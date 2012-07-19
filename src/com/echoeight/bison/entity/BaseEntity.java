@@ -4,6 +4,8 @@ import java.awt.Rectangle;
 
 import org.lwjgl.input.Mouse;
 
+import com.echoeight.bison.util.Location;
+
 public abstract class BaseEntity implements Entity {
 	
 	protected double x, y, width, height;
@@ -11,6 +13,8 @@ public abstract class BaseEntity implements Entity {
     protected int id;
     protected EntityManager em;
     protected Entity entity;
+    protected Location loc;
+    
     
     public BaseEntity(EntityManager em, double x, double y, double width, double height) {
             this.x = x;
@@ -19,6 +23,17 @@ public abstract class BaseEntity implements Entity {
             this.height = height;
             this.entity = this;
             this.em = em;
+            this.loc = new Location(x,y);
+    }
+    
+    @Override
+    public void setLocation(Location loc){
+    	this.loc = loc;
+    }
+    
+    @Override
+    public Location getLocation(){
+    	return this.loc;
     }
     
     @Override

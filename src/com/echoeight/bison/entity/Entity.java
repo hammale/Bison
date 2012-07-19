@@ -1,5 +1,7 @@
 package com.echoeight.bison.entity;
 
+import com.echoeight.bison.util.Location;
+
 public interface Entity {
 	
 	public void update(int delta);
@@ -18,5 +20,7 @@ public interface Entity {
     public double getWidth();
     public boolean intersects(Entity other);
 	public float getMouseAngle();
+	public void setLocation(Location loc);
+	public Location getLocation();
 	
 }

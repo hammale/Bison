@@ -12,8 +12,8 @@ public abstract class BaseMoveableEntity extends BaseEntity implements MoveableE
 
     @Override
     public void update(int delta) {
-            this.x += delta * dx;
-            this.y += delta * dy;
+            x += delta * dx;
+            y += delta * dy;
     }
     
     public double getDX() {
