@@ -13,6 +13,26 @@ public class Location {
 		return this.x;
 	}
 	
+	public void addX(double amnt){
+		this.x += amnt;
+	}
+	
+	public void addY(double amnt){
+		this.y += amnt;
+	}
+	
+	public Location getAddX(double amnt){
+		return new Location(this.x+=amnt,this.y);
+	}
+	
+	public Location getAddY(double amnt){
+		return new Location(this.x,this.y+=amnt);
+	}
+	
+	public Location getAddBoth(double xamnt, double yamnt){
+		return new Location(this.x+=xamnt,this.y+=yamnt);
+	}
+	
 	public double getY(){
 		return this.y;
 	}

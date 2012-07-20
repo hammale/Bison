@@ -4,6 +4,7 @@ import java.awt.Rectangle;
 
 import org.lwjgl.input.Mouse;
 
+import com.echoeight.bison.util.Cuboid;
 import com.echoeight.bison.util.Location;
 
 public abstract class BaseEntity implements Entity {
@@ -14,6 +15,7 @@ public abstract class BaseEntity implements Entity {
     protected EntityManager em;
     protected Entity entity;
     protected Location loc;
+    protected Cuboid cuboid;
     
     
     public BaseEntity(EntityManager em, double x, double y, double width, double height) {
@@ -24,6 +26,16 @@ public abstract class BaseEntity implements Entity {
             this.entity = this;
             this.em = em;
             this.loc = new Location(x,y);
+            this.cuboid = new Cuboid(this.loc.getAddBoth(width/2, height/2), this.loc.getAddBoth((width/2)*-1, (height/2)*-1), width, height);
+    }
+    
+    @Override
+    public Cuboid getCuboid(){
+    	return this.cuboid;
+    }
+    
+    public void setCuboid(Cuboid cuboid){
+    	this.cuboid = cuboid;
     }
     
     @Override
@@ -109,8 +121,9 @@ public abstract class BaseEntity implements Entity {
 
     @Override
     public boolean intersects(Entity other) {
-            hitbox.setBounds((int) x, (int) y, (int) width, (int) height);
-            return hitbox.intersects(other.getX(), other.getY(), other.getWidth(), other.getHeight());
+//            hitbox.setBounds((int) x, (int) y, (int) width, (int) height);
+//            return hitbox.intersects(other.getX(), other.getY(), other.getWidth(), other.getHeight());
+    	return cuboid.intersects(other.getCuboid());
     }
     
 }

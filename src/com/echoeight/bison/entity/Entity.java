@@ -1,5 +1,6 @@
 package com.echoeight.bison.entity;
 
+import com.echoeight.bison.util.Cuboid;
 import com.echoeight.bison.util.Location;
 
 public interface Entity {
@@ -22,5 +23,6 @@ public interface Entity {
 	public float getMouseAngle();
 	public void setLocation(Location loc);
 	public Location getLocation();
-	
+	public Cuboid getCuboid();
+	public void setCuboid(Cuboid cuboid);
 }
