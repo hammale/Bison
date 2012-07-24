@@ -1,0 +1,30 @@
+*.class
+
+# netbeans
+/nbproject
+
+# IntelliJ IDEA
+/.idea
+.iml
+
+# Eclipse files
+.classpath
+.project
+/.settings
+
+# Build files
+/build
+/bin
+/dist
+/manifest.mf
+
+# Mac stuff
+/.DS_Store
+
+# maven
+/target
+
+# Package Files #
+*.jar
+*.war
+*.ear
