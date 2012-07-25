@@ -13,6 +13,5 @@ public class Game {
 	}
 	
 	public void save() {
-
 	}
 }
