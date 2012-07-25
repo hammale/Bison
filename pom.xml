@@ -33,6 +33,7 @@
             <name>slick</name>
             <url>http://slick.cokeandcode.com/mavenrepo</url>
         </repository>
+               
     </repositories>
 
     <dependencies>
@@ -59,7 +60,16 @@
         </dependency>
     </dependencies>
 
+    <distributionManagement>
+        <repository>
+            <id>hammhome-ftp</id>
+            <url>ftp://ftp.hammhome.net/www/alex/java/maven/bison/maven2/</url>
+        </repository>
+    </distributionManagement>
+
     <build>
+        <sourceDirectory>src</sourceDirectory>
+    	<defaultGoal>clean compile package</defaultGoal> 
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -84,11 +94,13 @@
                 </executions>
             </plugin>
         </plugins>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ftp</artifactId>
+                <version>1.0-alpha-6</version>
+            </extension>
+        </extensions>
     </build>
-    <distributionManagement>
-        <repository>
-        <id>example-ftp</id>
-        <url>http://hammhome.net/alex/java/maven/bison/maven2/</url>
-    </repository>
-    </distributionManagement>
+    
 </project>
