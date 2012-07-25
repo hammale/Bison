@@ -85,4 +85,10 @@
             </plugin>
         </plugins>
     </build>
+    <distributionManagement>
+        <repository>
+        <id>example-ftp</id>
+        <url>http://hammhome.net/alex/java/maven/bison/maven2/</url>
+    </repository>
+    </distributionManagement>
 </project>
