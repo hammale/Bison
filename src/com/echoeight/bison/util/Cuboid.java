@@ -1,95 +1,65 @@
 package com.echoeight.bison.util;
 
+import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Transform;
+
 import com.echoeight.bison.entity.Entity;
 
 public class Cuboid {
 	
-    public Location a, b, c, d;
-    private int length, width;
-    public Cuboid(Location a, Location b, double width, double height) {
-    	this.a = a;
-    	this.b = b;
-    	this.c = b.getAddY(height);
-    	this.d = b.getAddX(width);
-    	this.length = (int) height;
-    	this.width = (int) width;
+    public Location loc;
+    private double length, width;
+    Rectangle rect;
+    
+    public Cuboid(Location loc, double width, double height) {
+    	this.loc = loc;
+    	this.length = height;
+    	this.width = width;
+    	this.rect = new Rectangle((float) loc.getX(), (float) loc.getY(), (float) width, (float) height);
     }
     
-    public int getWidth(){
+    public double getWidth(){
     	return this.width;
     }
     
-    public int getLenght(){
+    public double getLenght(){
     	return this.length;
     }
     
 	public Location getCenter() {
-		return new Location((this.a.getX() + this.b.getX()) / 2D,
-				(this.a.getY() + this.b.getY()) / 2D);
+		return new Location(rect.getCenterX(), rect.getCenterY());
 	}
 	
-	public void rotate(double dx, double dy, double angle){
-		a.setX(a.getX() - dx*Math.cos(angle) + dy*Math.sin(angle));
-		a.setY(a.getY() - dx*Math.sin(angle) - dy*Math.cos(angle));
-		b.setX(b.getX() - dx*Math.cos(angle) + dy*Math.sin(angle));
-		b.setY(b.getY() - dx*Math.sin(angle) - dy*Math.cos(angle));
-		c.setX(c.getX() - dx*Math.cos(angle) + dy*Math.sin(angle));
-		c.setY(c.getY() - dx*Math.sin(angle) - dy*Math.cos(angle));
-		d.setX(d.getX() - dx*Math.cos(angle) + dy*Math.sin(angle));
-		d.setY(d.getY() - dx*Math.sin(angle) - dy*Math.cos(angle));
+	public void rotate(double angle){
+		rect.transform(Transform.createRotateTransform((float) angle));
+	}
+
+	public Rectangle getRectangle(){
+		return this.rect;
+	}
+	
+	public void setRectangle(Rectangle rect){
+		this.rect = rect;
 	}
 	
     public boolean intersects(Cuboid cub) {
-    		if (c.getX() >= cub.d.getX() || 
-    			d.getX() <= cub.c.getX() || 
-    			c.getY() <= cub.d.getY() || 
-    			d.getY() >= cub.c.getY()) 
-    		return false;
-    		return true;
+    		return rect.intersects(cub.getRectangle());
      }
     
-    public void setA(Location a) {
-        this.a = a;
+    public void setLocation(Location loc) {
+        this.loc = loc;
+        rect.setLocation((float) loc.getX(), (float) loc.getY());
     }
 
-    public void setB(Location b) {
-        this.b = b;
+    public Location getLocation() {
+        return this.loc;
     }
 
-    public Location getA() {
-        return this.a;
-    }
-
-    public Location getB() {
-        return this.b;
-    }
-
-    public double getMaxX() {
-        return Math.max(a.getX(), b.getX());
-    }
-
-    public double getMinX() {
-        return Math.min(a.getX(), b.getX());
-    }
-
-    public double getMaxY() {
-        return Math.max(a.getY(), b.getY());
-    }
-
-    public double getMinY() {
-        return Math.min(a.getY(), b.getY());
-    }
     
-    public boolean isInCuboid(Location location) {
-        return location.getX() >= this.getMinX()
-                && location.getX() <= this.getMaxX()
-                && location.getY() >= this.getMinY()
-                && location.getY() <= this.getMaxY();
+    public boolean isInCuboid(Location loc) {
+        return rect.includes((float) loc.getX(), (float) loc.getY());
     }
     public boolean isInCuboid(Entity e) {
-        return e.getLocation().getX() >= this.getMinX()
-                && e.getLocation().getX() <= this.getMaxX()
-                && e.getLocation().getY() >= this.getMinY()
-                && e.getLocation().getY() <= this.getMaxY();
+        return rect.includes((float) e.getX(), (float) e.getY());
     }
 }

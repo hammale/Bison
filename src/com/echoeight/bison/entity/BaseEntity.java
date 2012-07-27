@@ -26,7 +26,7 @@ public abstract class BaseEntity implements Entity {
             this.entity = this;
             this.em = em;
             this.loc = new Location(x,y);
-            this.cuboid = new Cuboid(this.loc.getAddBoth(width/2, height/2), this.loc.getAddBoth((width/2)*-1, (height/2)*-1), width, height);
+            this.cuboid = new Cuboid(this.loc.getAddBoth((width/2)*-1, (height/2)*-1), width, height);
     }
     
     @Override
