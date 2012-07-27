@@ -9,8 +9,8 @@ public class Cuboid {
     public Cuboid(Location a, Location b, double width, double height) {
     	this.a = a;
     	this.b = b;
-    	this.c = a.getAddX(width*-1);
-    	this.d = b.getAddX(height);
+    	this.c = b.getAddX(width);
+    	this.d = b.getAddY(height);
     	this.length = (int) height;
     	this.width = (int) width;
     }
