@@ -43,7 +43,7 @@ public class Cuboid {
 	}
 	
     public boolean intersects(Cuboid cub) {
-    		return rect.intersects(cub.getRectangle());
+    	return rect.intersects(cub.getRectangle());
      }
     
     public void setLocation(Location loc) {
@@ -54,8 +54,7 @@ public class Cuboid {
     public Location getLocation() {
         return this.loc;
     }
-
-    
+ 
     public boolean isInCuboid(Location loc) {
         return rect.includes((float) loc.getX(), (float) loc.getY());
     }
