@@ -2,7 +2,7 @@ package com.echoeight.bison.entity;
 
 public abstract class BaseMoveableEntity extends BaseEntity implements MoveableEntity {
 	
-	protected double dx ,dy;
+	protected double dx ,dy,lastx,lasty;
 	
 	public BaseMoveableEntity(EntityManager em, double x, double y, double width, double height) {
 		super(em, x, y, width, height);
@@ -14,6 +14,16 @@ public abstract class BaseMoveableEntity extends BaseEntity implements MoveableE
     public void update(int delta) {
             x += delta * dx;
             y += delta * dy;
+            lastx = x;
+            lasty = y;
+    }
+    
+    public double getLastX(){
+    	return lastx;
+    }
+    
+    public double getLastY(){
+    	return lasty;
     }
     
     public double getDX() {
