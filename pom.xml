@@ -6,7 +6,6 @@
 
     <groupId>bison</groupId>
     <artifactId>bison</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
     <name>Bison</name>
     <description>Bison Game Engine</description>
 
@@ -103,4 +102,5 @@
         </extensions>
     </build>
     
+    <version>1</version>
 </project>
