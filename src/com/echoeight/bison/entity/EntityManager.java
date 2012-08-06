@@ -35,8 +35,9 @@ public class EntityManager {
 		ids.remove(entity.getId());
 		entitiesrem.add(entity);
 		if(entity instanceof MoveableEntity){
-			if(movingEntities.contains(entity)){
-				movingEntities.remove(entity);
+			for(Entity ent : movingEntities){
+				if(ent.getId() == entity.getId())
+					movingEntities.remove(entity);
 			}
 		}
 		for(Entity ent : entitiesrem){
